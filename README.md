@@ -1,81 +1,53 @@
-# Ethio-defense-deepfake-detection-
-Title: Web-Based DeepFake Detection System
-Author: Pvt Soldier Binyam E.
-For: Ethiopian Military Cyber Defense Directorate
+ባለብዙ-ሞዳል ዲፕፌክ ማወቂያ ስርዓት ከዋዙህ (Wazuh SIEM) ውህደት ጋር
 
----
+ይህ ፕሮጀክት የተፈጠሩ የውሸት (ዲፕፌክ) ምስሎችን፣ ቪዲዮዎችን እና ድምጾችን በቅጽበት ለመለየት የሚያስችል፣ በአማርኛ እና በእንግሊዝኛ ቋንቋዎች መስራት የሚችል (Bilingual)፣ ለደህንነት ኦፕሬሽን ማዕከላት እና ድርጅቶች የተዘጋጀ የድር መተግበሪያ (Web-app) እና የሀገር ውስጥ ኦፍላይን ማወቂያ ስርዓት ነው።
 
-1. **Project Summary**
-This project proposes the design and evaluation of a Web-Based DeepFake Detection System tailored for military cyber defense purposes. The system will identify manipulated media using state-of-the-art deepfake detection techniques. It is designed to be beginner-friendly while maintaining practical utility for military cyber defense.
+አጠቃላይ መግለጫ
 
-2. **Objectives**
-- Build a Python-based deepfake detection system for images, video, and audio.
-- Provide a Web UI interface for usability, including a media upload panel.
-- Display detection results in Amharic (ዲኘፌክ ነው / ዲኘፌክ አይደለም) and English.
-- Implement an Admin Panel for optional model training and dataset management.
-- Ensure the system runs locally on localhost for security.
+አርቲፊሻል ኢንተለጀንስ (AI) በፍጥነት እያደገ ሲሄድ፣ የተጭበረበሩ ሚዲያዎች እና ዲፕፌኮች የተሳሳቱ መረጃዎችን ለማሰራጨት፣ የማህበራዊ ምህንድስና ጥቃቶችን (Social Engineering Attacks) ለመፈጸም እና የድርጅቶችን ስም ለማጥፋት እየዋሉ ይገኛሉ።
 
-3. **Threat Model / Use Cases**
-- Detect deepfake content targeting military personnel, officials, or operations.
-- Identify manipulated media that misrepresents official events.
-- Evaluate the system on images, video, and audio to simulate real-world military scenarios.
+ይህ ፕሮጀክት እነዚህን አደጋዎች ለመከላከል የሚያስችል ጠንካራ የረብሻ ማወቂያ መፍትሄ የሚያቀርብ ሲሆን፣ ሙሉ በሙሉ ኦፍላይን ወይም በድር/ሞባይል ሊሰራ የሚችል፣ አውቶማቲክ የ JSON ሎጎችን ከማመንጨት ባለፈ ከ Wazuh SIEM ጋር በቀጥታ በመዋሃድ የደህንነት ክትትልን የሚያደርግ ስርዓት ነው።
+ዋና ዋና ባህሪያት (Key Features)ባለብዙ-ሞዳል ማወቂያ ሞተሮች (Multi-Modal Detection Engines):
+የቪዲዮ ማወቂያ (Video Detection): በ 3D-CNNs ላይ የተመሰረተ ሲሆን፣ በቪዲዮው ቆይታ ውስጥ 16 የዘፈቀደ ፍሬሞችን በመውሰድ (Temporal Segment Sampling) የፊት እንቅስቃሴ መዛባቶችን እና የዲፕፌክ ምልክቶችን ይለያል።   
+የድምጽ ማወቂያ (Audio Detection): የድምጽ ሞገዶችን እና ሊኒየር ፍሪኩዌንሲ ሴፕስትራል ኮፊሸንቶችን (LFCCs) በመተንተን የ AI ድምጽ ቅጂዎችን (Voice Clones) የሚለይ የሃይብሪድ CNN / Audio Fusion ኔትወርክ ይጠቀማል።   
+የምስል ማወቂያ (Image Detection): በ AI የተፈጠሩ የቆዳ ሸካራማዎችን እና የጀርባ ጉድለቶችን በፒክሰል ደረጃ ለመለየት የሚረዳ 2D ResNet-18 CNN ይጠቀማል።  
+ሁለገብ የቋንቋ ድጋፍ (Bilingual UI): ለአካባቢያዊ እና ክልላዊ አጠቃቀም እንዲመች ሙሉ አማርኛ እና እንግሊዝኛ ቋንቋዎችን ይደግፋል።   
+SIEM / SOC ውህደት: የተዋቀሩ የ JSON ሎጎችን በቀጥታ በዋዙህ ኤጀንት (Wazuh Agent) አማካኝነት ወደ ዋዙህ ማናጀር በመላክ ቅጽበታዊ ማንቂያዎችን (Alerts) እና የደህንነት ክትትሎችን ይሰጣል።  
+የሊንክ ዩአርኤል መተንተኛ (URL & Link Analyzer): የሚዲያ አገናኞችን በቀጥታ ከዩአርኤል በመቃኘት ለመፈተሽ የሚያስችል አብሮ የተሰራ መሣሪያ አለው።  
+የአስተዳዳሪ መቆጣጠሪያ ፓናል (Admin Panel): ሞዴሎችን እንደገና ለማሰልጠን (Retraining)፣ የውሂብ ማህደሮችን (Datasets) ለማስተዳደር፣ የስርዓት ጤናን ለመከታተል እና ሎጎችን ለማየት የሚረዱ መሳሪያዎች አሉት።  
+Flexible Deployment: በ Docker ሙሉ በሙሉ የታሸገ (Containerized) ሲሆን፣ በሊኑክስ ሰርቨሮች ላይ በአካባቢያዊ አውታረ መረቦች ወይም በልዩ ዶሜይን ስም ኦንላይን ሊሰማራ ይችላል። 
 
-4. **Web UI Requirements**
-- **Header**: Directorate logo placeholder + "Ethiopian Defense Cyber Main Directorate" as page title.
-- **Media Upload Panel**: Users can upload images, video, or audio files.
-- **Detection Results Panel**: Display media evaluation with Amharic labels:
-  - Deepfake detected: ዲኘፌክ ነው
-  - Original media: ዲኘፌክ አይደለም
-- **Metrics Panel**: Optional display of detection accuracy, false positives, and false negatives.
-- **Admin Panel**: For authorized users to upload datasets and initiate model training/fine-tuning.
-- **Footer**: Contact information including Facebook, GitHub, email, and phone.
-- **Run Environment**: Localhost deployment only.
+ስርዓት አርክቴክቸር (System Architecture)
 
-5. **Security & Privacy Considerations**
-- Media is processed locally; no files are uploaded online.
-- Admin access required for training panel; standard users cannot modify models.
+አርክቴክቸሩ ለደህንነት እና ለሀብት አጠቃቀም የተመቻቹ ዋና ዋና ክፍሎችን ይዟል:
+የፊት ገጽ/የድር መተግበሪያ በይነገጽ (Web Application Interface): በፒሲ እና በሞባይል መሳሪያዎች ሊደረስበት የሚችል ሁለገብ ዩአይ።  
+የጀርባ ማቀነባበሪያ አገልግሎቶች (Backend Processing Services): የምስል፣ የቪዲዮ እና የድምጽ ማወቂያ ሞተሮችን የሚያስተዳድሩ የ REST API አገልግሎቶች።   
+የውሂብ ጎታ እና ማከማቻ (Database & Storage Layer): ጊዜያዊ የሚዲያ ሰቀላዎችን እና ቋሚ የሜታዳታ መዝገቦችን (ሰዓት፣ የውጤት መተማመን መቶኛ፣ የማወቂያ ውጤቶች እና የኦዲት ሎጎች) የሚይዝ የሀገር ውስጥ ዳታቤዝ።   
+የሎግ እና SIEM መስመር (Logging & SIEM Pipeline): ከዋዙህ SIEM ጋር በቀጥታ የተዋሃደ በ JSON የተቀረጸ የሎግ ማመንጫ ሞተር።
 
-6. **Evaluation Metrics**
-- Accuracy (correct detection rate)
-- False positives / false negatives
-- Metrics displayed on the Web UI after evaluation
+የውሂብ ማህደሮች እና ሞዴል ስልጠና (Datasets & Model Training)
 
-7. **Best Practices Integrated**
-- Use of pretrained XceptionNet/MesoNet models for initial evaluation.
-- Organized folder structure for models, datasets, static files, and templates.
-- Local processing for privacy and security.
-- Optional admin training panel for model updates without affecting main detection.
-- Clear README and documentation for setup and usage.
+ከፍተኛ ትክክለኛነትን ለማረጋገጥ ሞዴሎቹ በሚከተሉት መሠረታዊ መረጃዎች ተሰልጥነዋል:  
+ቪዲዮ: ከታወቁ ከፍተኛ ጥራት ያላቸው መረጃዎች (HIDF, Celeb-DF v2) በተጨማሪ በ 2025 ካግል ትናንሽ የዲፕፌክ ቪዲዮ ማህደሮች ተስተካክለዋል።  
+ድምጽ: ከ ASVspoof 2019 መስፈርት እና ከ SpeechFake Dataset (2024) ጋር ተቀናጅቷል።   
+ምስል: Real/Fake Faces (2021) እና DeepFake-Eval-2024 የተጠቃሙ ሲሆን፣  Overfitting ለመከላከል የተለያዩ የጥንቃቄ ስልቶች ተተግብረዋል። 
 
-8. **Future Expansion**
-- Real-time detection integration
-- Connection to other military monitoring tools
-- Optional cloud deployment for secure centralized analysis
+Installation & Deployment
+Getting Started
+1.ማህደሩን ጊትሀብ ያውርዱ:
 
-9. **References / Tools**
-- Python libraries: `opencv-python`, `torch`, `flask`, `deepface` (optional)
-- GitHub repository: [HongguLiu/Deepfake-Detection](https://github.com/HongguLiu/Deepfake-Detection)
-- FaceForensics++ dataset
-- Research papers and articles on deepfake detection techniques
+git clone https://github.com/Binyam-Endale/military-deepfake-detection.git
 
-10. **Visual Mockups / Flow Diagram**
-- Include Web UI mockup image showing header, media upload panel, detection panel with Amharic labels, metrics, and footer.
-- Diagram of workflow: User uploads media → Detection Engine → Results displayed → Metrics summary → Optional admin training.
+cd military-deepfake-detection
 
-11. **Project Deliverables**
-- Fully functional Python-based Web UI detection system with media upload and admin panel.
-- Documentation including setup instructions, user guide, testing results, and references
+2.የፓይተን ቨርቹዋል ከባቢን በማግበር የዶከር ኮንቴይነሮቹን ያስጀምሩ
 
-12. **Timeline**
-- Stage 1: System setup and preliminary testing (1 week)
-- Stage 2: Integration of detection models (2 weeks)
-- Stage 3: Web UI design, media upload, and admin panel deployment (1 week)
-- Stage 4: Final evaluation and documentation (1 week)
+source .venv/bin/activate
+sudo docker compose up -d
 
----
+3.የኮንቴይነሮቹን ሁኔታ ያረጋግጡ:
 
-**Footer (example in Word)**
-- Facebook: [Your Facebook link]
-- GitHub: [Your GitHub link]
-- Email: [Your email]
-- Phone: [Your phone number]
+sudo docker ps
+
+4.መተግበሪያውን በ http://localhost ወይም https://www.endfcyberdefense.dpdns.org/ ማግኘት ይችላሉ።
+
