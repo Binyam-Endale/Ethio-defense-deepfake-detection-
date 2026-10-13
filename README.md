@@ -36,7 +36,7 @@ Installation & Deployment
 Getting Started
 1.ማህደሩን ጊትሀብ ያውርዱ:
 
-git clone https://github.com/Binyam-Endale/military-deepfake-detection.git
+git clone https://github.com/Binyam-Endale/Ethio-defense-deepfake-detection.git
 
 cd military-deepfake-detection
 
